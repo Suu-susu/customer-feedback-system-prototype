@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tait Hub Feedback System Prototype | Jiashuo Su</title>
+  <title>Field Support Feedback System Prototype | Jiashuo Su</title>
   <style>
     :root {
       --ink: #15202b; --muted: #617080; --line: #d7dee8; --paper: #fff; --soft: #f4f7fa;
@@ -90,7 +90,7 @@
   </style>
 </head>
 <body>
-  <header><h1>Tait Hub Customer Feedback System Prototype</h1><p>A self-directed UX/UI and web platform concept project by Jiashuo Su. It shows a complete feedback loop: page-level submission, automatic context capture, triage, filtering, ownership, status updates, and simple reporting.</p></header>
+  <header><h1>Field Support Feedback System Prototype</h1><p>A self-directed UX/UI and web platform concept project by Jiashuo Su, inspired by a customer feedback and web-platform internship brief. It shows a complete feedback loop: page-level submission, automatic context capture, triage, filtering, ownership, status updates, and simple reporting.</p></header>
   <main class="wrap">
     <section class="case" aria-labelledby="case-title">
       <h2 id="case-title">Case study</h2>
@@ -104,7 +104,7 @@
       <h3>Validation plan</h3><ul><li>Ask 3-5 users to submit sample feedback from technical content pages.</li><li>Measure whether users can complete a submission in under one minute.</li><li>Check whether support and product stakeholders can triage from the captured fields.</li><li>Iterate labels, categories, and confirmation copy from observed hesitation points.</li></ul>
     </section>
     <section class="prototype" aria-labelledby="prototype-title">
-      <div class="product-topbar"><strong id="prototype-title">Tait Hub Feedback System</strong><span>Interactive portfolio prototype</span></div>
+      <div class="product-topbar"><strong id="prototype-title">Field Support Feedback System</strong><span>Interactive portfolio prototype</span></div>
       <div class="product-body">
         <nav class="side-nav" aria-label="Content pages"><button class="active" type="button" data-page="accessory">Accessory guide</button><button type="button" data-page="support">Support article</button><button type="button" data-page="workflow">Device workflow</button><button type="button" data-page="release">Release note</button></nav>
         <div class="workspace">
@@ -121,14 +121,14 @@
       </div>
     </section>
   </main>
-  <footer>Self-directed concept project. It is not an official Tait product and was created to demonstrate product thinking, UX/UI structure, and technical feasibility for an internship application.</footer>
+  <footer>Self-directed concept project. It is not an official product of any company and was created to demonstrate product thinking, UX/UI structure, and technical feasibility for an internship application.</footer>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script>
     const pages = {
       accessory: { title: "TP9310 accessory setup guide", summary: "This page explains compatible audio, charging, and carry accessories for a mission-critical radio device. The feedback widget captures this page context automatically.", section: "Current accessory section", description: "Users can compare common accessories, but may need a clearer way to confirm compatibility by device model and work context.", specs: [["Audio","Headset and speaker mic"],["Power","Desktop and vehicle charging"],["Carry","Clip, pouch, and wearable options"]], note: "I cannot quickly confirm which charger accessory is compatible with this device model." },
       support: { title: "Radio network troubleshooting article", summary: "This support page helps users diagnose connectivity and configuration issues before escalating to a support team.", section: "Signal loss troubleshooting", description: "Users need clearer decision points between device settings, network coverage, and hardware checks.", specs: [["Symptom","Intermittent signal loss"],["Context","Field deployment"],["Next step","Capture reproducible details"]], note: "The troubleshooting steps are useful, but I am unsure when to escalate from configuration checks to hardware checks." },
       workflow: { title: "Device provisioning workflow", summary: "This workflow explains how users prepare a device profile, assign configuration details, and confirm readiness for deployment.", section: "Provisioning confirmation step", description: "The final confirmation screen could show stronger validation before a user applies settings to multiple devices.", specs: [["Profile","Operational channel set"],["Risk","Bulk configuration error"],["Need","Clear pre-submit checks"]], note: "Before applying the profile, I would like a clearer warning that confirms how many devices will be affected." },
-      release: { title: "Tait Hub release note", summary: "This release note explains platform updates, resolved issues, and changes that affect support and product users.", section: "Known issues and changes", description: "Users need a way to flag release-note wording that may cause confusion during rollout.", specs: [["Update","Workflow improvements"],["Audience","Support and field users"],["Impact","Change communication"]], note: "The release note mentions workflow improvements, but I cannot tell which user roles are affected." }
+      release: { title: "Platform release note", summary: "This release note explains platform updates, resolved issues, and changes that affect support and product users.", section: "Known issues and changes", description: "Users need a way to flag release-note wording that may cause confusion during rollout.", specs: [["Update","Workflow improvements"],["Audience","Support and field users"],["Impact","Change communication"]], note: "The release note mentions workflow improvements, but I cannot tell which user roles are affected." }
     };
     const initialRecords = [
       { ref:"FB-1042", category:"Documentation", summary:"Compatibility examples are hard to find from the accessory setup page.", priority:"Medium", status:"New", owner:"Product documentation", page:"TP9310 accessory setup guide", section:"Current accessory section", detail:"User needs clearer charger compatibility examples by device model and work context.", contact:"Not provided" },
@@ -136,7 +136,7 @@
       { ref:"FB-1044", category:"Technical", summary:"Accessory links need checks for outdated product references.", priority:"Medium", status:"New", owner:"Support engineering", page:"TP9310 accessory setup guide", section:"Current accessory section", detail:"Several related links should be checked against current accessory names and device families.", contact:"Not provided" },
       { ref:"FB-1045", category:"Documentation", summary:"Troubleshooting article does not clearly explain escalation criteria.", priority:"High", status:"New", owner:"Support documentation", page:"Radio network troubleshooting article", section:"Signal loss troubleshooting", detail:"Users need a clearer point where configuration checks end and hardware investigation begins.", contact:"support.user@example.com" },
       { ref:"FB-1046", category:"Usability", summary:"Provisioning workflow needs a stronger bulk-change confirmation step.", priority:"High", status:"In review", owner:"Product and engineering", page:"Device provisioning workflow", section:"Provisioning confirmation step", detail:"Users want a visible device count and final warning before applying settings to multiple devices.", contact:"Not provided" },
-      { ref:"FB-1047", category:"Feature", summary:"Release notes could let users flag confusing rollout wording.", priority:"Low", status:"Resolved", owner:"Product operations", page:"Tait Hub release note", section:"Known issues and changes", detail:"A lightweight feedback link on release notes would help product operations identify unclear rollout copy.", contact:"Not provided" }
+      { ref:"FB-1047", category:"Feature", summary:"Release notes could let users flag confusing rollout wording.", priority:"Low", status:"Resolved", owner:"Product operations", page:"Platform release note", section:"Known issues and changes", detail:"A lightweight feedback link on release notes would help product operations identify unclear rollout copy.", contact:"Not provided" }
     ];
     let records = initialRecords.map(r => ({...r})); let currentPageKey = "accessory"; let selectedRecordRef = null;
     const $ = id => document.getElementById(id);

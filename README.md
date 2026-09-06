@@ -1,8 +1,8 @@
-# Tait Hub Feedback System Mini Portfolio
+# Field Support Feedback System Mini Portfolio
 
-This is a self-directed concept project, not an official Tait Communications product.
+This is a self-directed concept project, not an official product of any company.
 
-Self-directed UX/UI and web platform concept project by Jiashuo Su, created to demonstrate product thinking for a customer feedback and triage workflow.
+Self-directed UX/UI and web platform concept project by Jiashuo Su, inspired by a customer feedback and web-platform internship brief. It was created to demonstrate product thinking for a feedback capture and triage workflow.
 
 ## Live Prototype
 
@@ -25,7 +25,7 @@ This project demonstrates:
 
 ## Key Interactions
 
-- Switch between four Tait Hub content contexts
+- Switch between four technical support content contexts
 - Submit page-level feedback with captured context
 - View triage dashboard records
 - Search and filter feedback by category and status
@@ -33,4 +33,4 @@ This project demonstrates:
 
 ## Honest Positioning
 
-This is not commercial work and not work completed for Tait. It is a self-directed portfolio project designed to show initiative, UX/UI reasoning, web-platform awareness, and readiness for internship work.
+This is not commercial work and not work completed for any company. It is a self-directed portfolio project designed to show initiative, UX/UI reasoning, web-platform awareness, and readiness for internship work.
