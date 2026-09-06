@@ -1,22 +1,29 @@
 # Tait Hub Feedback System Mini Portfolio
 
-Self-directed UX/UI and web platform concept project by Jiashuo Su.
+This is a self-directed concept project, not an official Tait Communications product.
 
-## Purpose
+Self-directed UX/UI and web platform concept project by Jiashuo Su, created to demonstrate product thinking for a customer feedback and triage workflow.
 
-This project was created for the Tait Communications Junior Design Engineer Summer Intern application. It demonstrates:
+## Live Prototype
 
-- Customer feedback journey design
-- UX/UI thinking for a technical web platform
-- Stakeholder requirement analysis
-- Feedback categorisation and triage workflow
-- Technical feasibility thinking from an IT student perspective
+Open `index.html` in this repository, or use the GitHub Pages link once Pages is enabled:
 
-## Files
+https://suu-susu.github.io/customer-feedback-system-prototype/
+
+## Project Focus
+
+This project demonstrates:
+
+- Customer feedback journey design for a technical web platform
+- UX/UI thinking for low-friction feedback capture
+- Stakeholder requirement analysis across customers, support, product, and engineering
+- Feedback categorisation and triage workflow design
+- Practical web implementation using HTML, CSS, and JavaScript
+
+## Included Files
 
 - `index.html` - interactive prototype and case study page
-- `../JiashuoSu_Tait_JR100234_UX_UI_Web_Platforms_Intern_PORTFOLIO.docx` - updated role-specific CV
-- `../Tait_Hub_Feedback_System_Mini_Portfolio_Case_Study.docx` - written mini case study
+- `README.md` - project overview and positioning
 
 ## Interview Talking Points
 
@@ -27,4 +34,4 @@ This project was created for the Tait Communications Junior Design Engineer Summ
 
 ## Honest Positioning
 
-This is a self-directed concept project, not an official Tait product and not work completed for Tait. It is designed to show initiative, product thinking, and readiness for UX/UI and web-platform internship work.
+This is not commercial work and not work completed for Tait. It is a self-directed portfolio project designed to show initiative, UX/UI reasoning, web-platform awareness, and readiness for internship work.
