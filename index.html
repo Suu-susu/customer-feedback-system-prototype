@@ -6,454 +6,162 @@
   <title>Tait Hub Feedback System Prototype | Jiashuo Su</title>
   <style>
     :root {
-      --ink: #17202a;
-      --muted: #5b6673;
-      --line: #d8dee6;
-      --paper: #ffffff;
-      --soft: #f3f6f8;
-      --blue: #005d8f;
-      --cyan: #00a6c8;
-      --green: #1f7a4d;
-      --orange: #b75c0b;
-      --shadow: 0 18px 50px rgba(23,32,42,.13);
+      --ink: #15202b; --muted: #617080; --line: #d7dee8; --paper: #fff; --soft: #f4f7fa;
+      --blue: #075985; --teal: #0f766e; --green: #217a4b; --amber: #a15c07; --red: #b42318;
+      --shadow: 0 18px 45px rgba(21, 32, 43, .12); --radius: 8px;
     }
     * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--ink);
-      background: #eef2f5;
-      line-height: 1.45;
-    }
-    header {
-      background: var(--paper);
-      border-bottom: 1px solid var(--line);
-      padding: 28px 6vw 22px;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 30px;
-      line-height: 1.15;
-      letter-spacing: 0;
-    }
-    header p {
-      max-width: 980px;
-      margin: 12px 0 0;
-      color: var(--muted);
-      font-size: 16px;
-    }
-    .wrap {
-      display: grid;
-      grid-template-columns: minmax(320px, 470px) minmax(420px, 1fr);
-      gap: 24px;
-      padding: 24px 6vw 40px;
-      align-items: start;
-    }
-    .case, .prototype {
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      box-shadow: var(--shadow);
-    }
-    .case { padding: 22px; }
-    .case h2, .case h3, .prototype h2, .prototype h3 {
-      margin: 0 0 10px;
-      letter-spacing: 0;
-    }
-    .case h2, .prototype h2 { font-size: 20px; }
-    .case h3 { font-size: 15px; margin-top: 20px; }
-    .case p, .case li { font-size: 14px; }
-    .case p { margin: 0 0 12px; }
-    .case ul { margin: 8px 0 0 18px; padding: 0; }
+    body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: var(--ink); background: #eef3f6; line-height: 1.45; }
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; border-radius: 6px; border: 1px solid var(--line); background: #fff; color: var(--ink); }
+    button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid rgba(15,116,157,.25); outline-offset: 2px; }
+    header { background: var(--paper); border-bottom: 1px solid var(--line); padding: 24px 5vw 20px; }
+    header h1 { margin: 0; font-size: clamp(24px, 3vw, 34px); line-height: 1.15; letter-spacing: 0; }
+    header p { max-width: 1050px; margin: 10px 0 0; color: var(--muted); font-size: 16px; }
+    .wrap { display: grid; grid-template-columns: minmax(300px,410px) minmax(520px,1fr); gap: 20px; padding: 20px 5vw 34px; align-items: start; }
+    .case, .prototype { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .case { padding: 20px; }
+    .case h2, .prototype h2 { margin: 0 0 10px; font-size: 20px; letter-spacing: 0; }
+    .case h3 { margin: 18px 0 8px; font-size: 15px; letter-spacing: 0; }
+    .case p, .case li { font-size: 14px; color: #2f3c49; }
+    .case p { margin: 0 0 12px; } .case ul { margin: 8px 0 0 18px; padding: 0; }
     .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
-    .pill {
-      border: 1px solid var(--line);
-      background: var(--soft);
-      color: var(--ink);
-      border-radius: 999px;
-      padding: 6px 10px;
-      font-size: 12px;
-    }
-    .metric-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin: 12px 0 16px;
-    }
-    .metric {
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      padding: 10px;
-      background: var(--soft);
-    }
-    .metric strong { display: block; font-size: 18px; }
-    .metric span { color: var(--muted); font-size: 12px; }
-    .flow {
-      display: grid;
-      gap: 8px;
-      margin-top: 10px;
-    }
-    .flow-step {
-      display: grid;
-      grid-template-columns: 30px 1fr;
-      gap: 10px;
-      align-items: start;
-      font-size: 13px;
-    }
-    .num {
-      display: grid;
-      place-items: center;
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      background: var(--blue);
-      color: white;
-      font-weight: 700;
-      font-size: 12px;
-    }
+    .pill { border: 1px solid var(--line); background: var(--soft); border-radius: 999px; padding: 6px 10px; font-size: 12px; color: #263646; }
+    .metric-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin: 12px 0 16px; }
+    .metric { border: 1px solid var(--line); border-radius: 6px; padding: 10px; background: var(--soft); }
+    .metric strong { display: block; font-size: 18px; } .metric span { color: var(--muted); font-size: 12px; }
+    .flow { display: grid; gap: 8px; margin-top: 10px; }
+    .flow-step { display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; font-size: 13px; color: #334252; }
+    .num { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--blue); color: white; font-weight: 700; font-size: 12px; }
+    .architecture { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-top: 10px; }
+    .box { border: 1px solid var(--line); border-radius: 6px; padding: 10px; background: var(--soft); font-size: 13px; }
     .prototype { overflow: hidden; }
-    .product-topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      background: #102b3f;
-      color: white;
-      padding: 13px 16px;
-    }
-    .product-topbar strong { font-size: 16px; }
-    .product-topbar span { color: #c7d7e3; font-size: 13px; }
-    .product-body {
-      display: grid;
-      grid-template-columns: 190px 1fr;
-      min-height: 620px;
-    }
-    nav {
-      background: #f7f9fb;
-      border-right: 1px solid var(--line);
-      padding: 14px;
-    }
-    nav button {
-      width: 100%;
-      border: 0;
-      background: transparent;
-      color: var(--ink);
-      text-align: left;
-      padding: 10px;
-      border-radius: 6px;
-      margin-bottom: 6px;
-      cursor: pointer;
-      font: inherit;
-      font-size: 13px;
-    }
-    nav button.active {
-      background: #dff2f7;
-      color: #07384a;
-      font-weight: 700;
-    }
-    .workspace {
-      position: relative;
-      padding: 20px;
-      background: white;
-    }
-    .doc h2 { font-size: 22px; margin-bottom: 8px; }
-    .doc p { color: var(--muted); max-width: 620px; font-size: 14px; }
-    .device-card {
-      margin: 18px 0;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 14px;
-      max-width: 620px;
-      background: var(--soft);
-    }
-    .device-card h3 { font-size: 16px; }
-    .specs {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-top: 12px;
-    }
-    .spec {
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      padding: 10px;
-      font-size: 13px;
-    }
-    .feedback-trigger {
-      border: 0;
-      background: var(--cyan);
-      color: white;
-      padding: 11px 14px;
-      border-radius: 6px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-    .feedback-panel {
-      position: absolute;
-      right: 20px;
-      top: 70px;
-      width: min(390px, calc(100% - 40px));
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      box-shadow: var(--shadow);
-      padding: 16px;
-      display: none;
-      z-index: 5;
-    }
-    .feedback-panel.show { display: block; }
-    .feedback-panel h3 { font-size: 18px; }
-    label {
-      display: block;
-      font-size: 13px;
-      font-weight: 700;
-      margin: 12px 0 5px;
-    }
-    select, textarea, input {
-      width: 100%;
-      border: 1px solid #b7c1cc;
-      border-radius: 6px;
-      padding: 9px;
-      font: inherit;
-      font-size: 14px;
-      background: white;
-    }
-    textarea { min-height: 92px; resize: vertical; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 14px; }
-    .actions button, .tabbar button {
-      border: 1px solid var(--line);
-      background: white;
-      border-radius: 6px;
-      padding: 8px 11px;
-      cursor: pointer;
-      font: inherit;
-      font-size: 13px;
-    }
-    .actions .primary { background: var(--blue); color: white; border-color: var(--blue); }
-    .tabbar { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 12px; }
-    .tabbar button.active { background: var(--blue); color: white; border-color: var(--blue); }
-    .triage { display: none; }
-    .triage.show { display: block; }
-    table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    th, td { text-align: left; border-bottom: 1px solid var(--line); padding: 9px; vertical-align: top; }
-    th { background: var(--soft); }
-    .priority-high { color: var(--orange); font-weight: 700; }
-    .priority-medium { color: var(--blue); font-weight: 700; }
-    .success {
-      border-left: 4px solid var(--green);
-      background: #eef8f2;
-      padding: 12px;
-      border-radius: 6px;
-      font-size: 14px;
-    }
-    .architecture {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin-top: 10px;
-    }
-    .box {
-      border: 1px solid var(--line);
-      border-radius: 6px;
-      padding: 10px;
-      background: var(--soft);
-      font-size: 13px;
-    }
-    footer {
-      padding: 0 6vw 26px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-    @media (max-width: 900px) {
-      .wrap, .product-body { grid-template-columns: 1fr; }
-      nav { border-right: 0; border-bottom: 1px solid var(--line); }
-      .feedback-panel { position: static; width: auto; margin-top: 16px; }
-    }
-    @media (max-width: 560px) {
-      header h1 { font-size: 24px; }
-      .metric-grid, .specs, .form-row, .architecture { grid-template-columns: 1fr; }
-      .case, .workspace { padding: 16px; }
-    }
+    .product-topbar { display: flex; justify-content: space-between; align-items: center; gap: 16px; background: #102b3f; color: white; padding: 13px 16px; }
+    .product-topbar strong { font-size: 16px; } .product-topbar span { color: #c7d7e3; font-size: 13px; }
+    .product-body { display: grid; grid-template-columns: 190px 1fr; min-height: 690px; }
+    .side-nav { background: #f7f9fb; border-right: 1px solid var(--line); padding: 14px; }
+    .side-nav button { width: 100%; background: transparent; text-align: left; padding: 10px; margin-bottom: 6px; font-size: 13px; border-color: transparent; }
+    .side-nav button.active { background: #dff2f7; color: #07384a; font-weight: 700; border-color: #bddfe8; }
+    .workspace { display: grid; grid-template-rows: auto 1fr; min-width: 0; background: #fff; }
+    .toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); padding: 12px 16px; background: #fbfcfd; }
+    .tabbar { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tabbar button, .secondary, .primary { padding: 8px 11px; font-size: 13px; }
+    .tabbar button.active, .primary { background: var(--blue); color: white; border-color: var(--blue); }
+    .secondary:hover, .tabbar button:hover { border-color: #9eb1c4; }
+    .canvas { position: relative; padding: 18px; min-width: 0; }
+    .view { display: none; } .view.active { display: block; }
+    .doc h2 { font-size: 22px; margin: 0 0 8px; } .doc p { color: var(--muted); max-width: 700px; font-size: 14px; }
+    .device-card, .panel-card { border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; background: var(--soft); }
+    .device-card { margin: 16px 0; max-width: 720px; } .device-card h3, .panel-card h3 { font-size: 16px; margin: 0 0 8px; }
+    .specs { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-top: 12px; }
+    .spec { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 10px; font-size: 13px; }
+    .inline-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    .feedback-trigger { border: 0; background: var(--teal); color: white; padding: 11px 14px; font-weight: 700; }
+    .outline-btn { background: white; padding: 10px 12px; font-size: 13px; }
+    .feedback-panel { position: absolute; right: 18px; top: 70px; width: min(420px,calc(100% - 36px)); background: white; border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 16px; display: none; z-index: 5; }
+    .feedback-panel.show { display: block; } .feedback-panel h3 { margin: 0 0 8px; font-size: 18px; }
+    label { display: block; font-size: 13px; font-weight: 700; margin: 12px 0 5px; }
+    select, textarea, input { width: 100%; border: 1px solid #b7c1cc; border-radius: 6px; padding: 9px; font-size: 14px; background: white; }
+    textarea { min-height: 94px; resize: vertical; } .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .meta { margin: 10px 0 0; color: var(--muted); font-size: 12px; }
+    .error { display: none; color: var(--red); font-size: 13px; margin-top: 8px; } .error.show { display: block; }
+    .actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 14px; } .actions button { padding: 8px 11px; font-size: 13px; }
+    .dashboard-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 14px; }
+    .stat { border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; background: #fff; }
+    .stat strong { display: block; font-size: 22px; } .stat span { color: var(--muted); font-size: 12px; }
+    .controls { display: grid; grid-template-columns: 1.3fr .8fr .8fr auto; gap: 10px; margin: 14px 0; align-items: end; }
+    .controls label { margin-top: 0; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+    th, td { text-align: left; border-bottom: 1px solid var(--line); padding: 10px; vertical-align: top; }
+    th { background: var(--soft); font-size: 12px; color: #344253; } tbody tr:hover { background: #f8fbfd; }
+    .status, .priority { display: inline-flex; align-items: center; min-height: 24px; border-radius: 999px; padding: 3px 8px; font-size: 12px; font-weight: 700; white-space: nowrap; }
+    .priority.high { color: var(--red); background: #fff1f0; } .priority.medium { color: var(--amber); background: #fff7e8; } .priority.low { color: var(--blue); background: #eaf5fb; }
+    .status.new { color: var(--blue); background: #eaf5fb; } .status.review { color: var(--amber); background: #fff7e8; } .status.resolved { color: var(--green); background: #eef8f2; }
+    .row-actions { display: flex; flex-wrap: wrap; gap: 6px; } .row-actions button { padding: 6px 8px; font-size: 12px; }
+    .detail-panel { margin-top: 14px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; padding: 14px; display: none; }
+    .detail-panel.show { display: block; } .detail-panel h3 { margin: 0 0 8px; font-size: 16px; }
+    .detail-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; } .detail-grid div { background: var(--soft); border-radius: 6px; padding: 10px; font-size: 13px; }
+    .toast { position: fixed; right: 20px; bottom: 20px; width: min(360px,calc(100vw - 40px)); background: #102b3f; color: white; padding: 12px 14px; border-radius: var(--radius); box-shadow: var(--shadow); transform: translateY(20px); opacity: 0; pointer-events: none; transition: .2s ease; font-size: 14px; z-index: 20; }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .prototype-note { margin-top: 12px; color: var(--muted); font-size: 13px; }
+    footer { padding: 0 5vw 26px; color: var(--muted); font-size: 13px; }
+    @media (max-width: 980px) { .wrap, .product-body { grid-template-columns: 1fr; } .side-nav { border-right: 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: repeat(2,1fr); gap: 8px; } .side-nav button { margin: 0; } .feedback-panel { position: static; width: auto; margin-top: 16px; } .controls { grid-template-columns: 1fr 1fr; } .dashboard-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 620px) { .wrap { padding: 14px; } header { padding: 20px 14px 16px; } .metric-grid, .specs, .form-row, .architecture, .controls, .dashboard-grid, .detail-grid { grid-template-columns: 1fr; } .case, .canvas { padding: 14px; } .toolbar { align-items: stretch; } .tabbar, .toolbar-actions { width: 100%; display: flex; } .tabbar button, .toolbar-actions button { flex: 1; } table { display: block; overflow-x: auto; white-space: nowrap; } }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Tait Hub Customer Feedback System Prototype</h1>
-    <p>A self-directed UX/UI and web platform concept project by Jiashuo Su, created for Tait's Junior Design Engineer Summer Intern role. The project explores how customer feedback can be collected at the point of use, structured for triage, and connected back to product improvement.</p>
-  </header>
-
+  <header><h1>Tait Hub Customer Feedback System Prototype</h1><p>A self-directed UX/UI and web platform concept project by Jiashuo Su. It shows a complete feedback loop: page-level submission, automatic context capture, triage, filtering, ownership, status updates, and simple reporting.</p></header>
   <main class="wrap">
-    <section class="case">
-      <h2>Case study</h2>
-      <div class="pill-row">
-        <span class="pill">UX/UI</span>
-        <span class="pill">Web platform</span>
-        <span class="pill">Customer feedback</span>
-        <span class="pill">Prototype</span>
-        <span class="pill">Triage workflow</span>
-      </div>
-      <h3>Problem</h3>
-      <p>Users of technical platforms often notice documentation gaps, confusing workflows, or product issues while they are trying to complete a task. If feedback is buried in a generic support channel, product teams may receive comments without enough page context, severity, or reproducible detail.</p>
-
-      <h3>Design goal</h3>
-      <p>Create a lightweight feedback system that is fast for the user, structured enough for support triage, and useful for product and engineering teams.</p>
-
-      <div class="metric-grid">
-        <div class="metric"><strong>5</strong><span>core screens</span></div>
-        <div class="metric"><strong>&lt; 1 min</strong><span>target submission time</span></div>
-        <div class="metric"><strong>4</strong><span>feedback categories</span></div>
-      </div>
-
-      <h3>Target users</h3>
-      <ul>
-        <li>Field technicians and operational users who need quick feedback submission.</li>
-        <li>Support staff who need severity, page context, and clear notes for triage.</li>
-        <li>Product and UX teams who need patterns across feedback, not isolated comments.</li>
-        <li>Engineers who need reproducible information before investigating issues.</li>
-      </ul>
-
-      <h3>Prototype flow</h3>
-      <div class="flow">
-        <div class="flow-step"><span class="num">1</span><span>Open feedback from the current product or support page.</span></div>
-        <div class="flow-step"><span class="num">2</span><span>Select feedback type and severity to structure the report.</span></div>
-        <div class="flow-step"><span class="num">3</span><span>Add a short note, optional contact, and automatic page context.</span></div>
-        <div class="flow-step"><span class="num">4</span><span>Submit and receive a confirmation reference.</span></div>
-        <div class="flow-step"><span class="num">5</span><span>Route feedback into a triage dashboard for product and support teams.</span></div>
-      </div>
-
-      <h3>Technical feasibility</h3>
-      <div class="architecture">
-        <div class="box">Feedback widget<br>HTML/CSS/JS</div>
-        <div class="box">API endpoint<br>Validate and store</div>
-        <div class="box">Database<br>Feedback records</div>
-        <div class="box">Triage view<br>Prioritise trends</div>
-      </div>
-
-      <h3>Validation plan</h3>
-      <ul>
-        <li>Ask 3-5 users to submit sample feedback from a technical page.</li>
-        <li>Observe where users hesitate, choose the wrong category, or write vague notes.</li>
-        <li>Check whether support/product stakeholders can triage reports from the fields alone.</li>
-        <li>Iterate labels, categories, and confirmation text based on test findings.</li>
-      </ul>
+    <section class="case" aria-labelledby="case-title">
+      <h2 id="case-title">Case study</h2>
+      <div class="pill-row"><span class="pill">UX/UI</span><span class="pill">Web platform</span><span class="pill">Customer feedback</span><span class="pill">Triage workflow</span><span class="pill">Interactive prototype</span></div>
+      <h3>Problem</h3><p>Users of technical platforms often notice documentation gaps, confusing workflows, or product issues while completing a task. Generic support channels can lose page context, severity, and reproducible detail.</p>
+      <h3>Design goal</h3><p>Create a lightweight feedback system that is quick for the user, structured enough for support triage, and useful for product, UX, documentation, and engineering teams.</p>
+      <div class="metric-grid"><div class="metric"><strong>4</strong><span>content contexts</span></div><div class="metric"><strong>6</strong><span>demo feedback records</span></div><div class="metric"><strong>1</strong><span>closed feedback loop</span></div></div>
+      <h3>Primary user groups</h3><ul><li>Field users who need to report an issue without leaving the page.</li><li>Support teams who need severity, category, context, and contact information.</li><li>Product and UX teams who need repeated patterns, not isolated comments.</li><li>Engineers who need reproducible context before investigating an issue.</li></ul>
+      <h3>Prototype flow</h3><div class="flow"><div class="flow-step"><span class="num">1</span><span>User opens feedback from the page where the issue happened.</span></div><div class="flow-step"><span class="num">2</span><span>The widget captures page title, section, category, severity, and notes.</span></div><div class="flow-step"><span class="num">3</span><span>A reference number confirms that the feedback was received.</span></div><div class="flow-step"><span class="num">4</span><span>The triage dashboard groups issues by priority, category, owner, and status.</span></div><div class="flow-step"><span class="num">5</span><span>Teams review details, update status, copy references, and export a summary.</span></div></div>
+      <h3>Technical feasibility</h3><div class="architecture"><div class="box"><strong>Feedback widget</strong><br>HTML form and page context</div><div class="box"><strong>Validation</strong><br>Required note and email checks</div><div class="box"><strong>Feedback records</strong><br>Structured data model</div><div class="box"><strong>Triage view</strong><br>Filters, owner, status, export</div></div>
+      <h3>Validation plan</h3><ul><li>Ask 3-5 users to submit sample feedback from technical content pages.</li><li>Measure whether users can complete a submission in under one minute.</li><li>Check whether support and product stakeholders can triage from the captured fields.</li><li>Iterate labels, categories, and confirmation copy from observed hesitation points.</li></ul>
     </section>
-
-    <section class="prototype">
-      <div class="product-topbar">
-        <strong>Tait Hub</strong>
-        <span>Prototype environment</span>
-      </div>
+    <section class="prototype" aria-labelledby="prototype-title">
+      <div class="product-topbar"><strong id="prototype-title">Tait Hub Feedback System</strong><span>Interactive portfolio prototype</span></div>
       <div class="product-body">
-        <nav aria-label="Prototype sections">
-          <button class="active" type="button">Accessory guide</button>
-          <button type="button">Support article</button>
-          <button type="button">Device workflow</button>
-          <button type="button">Release note</button>
-        </nav>
+        <nav class="side-nav" aria-label="Content pages"><button class="active" type="button" data-page="accessory">Accessory guide</button><button type="button" data-page="support">Support article</button><button type="button" data-page="workflow">Device workflow</button><button type="button" data-page="release">Release note</button></nav>
         <div class="workspace">
-          <div class="doc">
-            <h2>TP9310 accessory setup guide</h2>
-            <p>This page explains compatible audio, charging, and carry accessories for a mission-critical radio device. The feedback widget captures this page context automatically.</p>
-            <div class="device-card">
-              <h3>Current accessory section</h3>
-              <p>Users can compare common accessories, but may need a clearer way to confirm compatibility by device model and work context.</p>
-              <div class="specs">
-                <div class="spec"><strong>Audio</strong><br>Headset and speaker mic</div>
-                <div class="spec"><strong>Power</strong><br>Desktop and vehicle charging</div>
-                <div class="spec"><strong>Carry</strong><br>Clip, pouch, and wearable options</div>
-              </div>
-            </div>
-            <button id="openFeedback" class="feedback-trigger" type="button">Send feedback</button>
+          <div class="toolbar"><div class="tabbar" aria-label="Prototype views"><button id="showCustomer" class="active" type="button">Customer view</button><button id="showTriage" type="button">Triage dashboard</button><button id="showInsights" type="button">Insights</button></div><div class="toolbar-actions"><button id="resetDemo" class="secondary" type="button">Reset demo</button></div></div>
+          <div class="canvas">
+            <section id="customerView" class="view active" aria-label="Customer feedback view">
+              <div class="doc"><h2 id="pageTitle"></h2><p id="pageSummary"></p><div class="device-card"><h3 id="sectionTitle"></h3><p id="sectionDescription"></p><div class="specs" id="specList"></div></div><div class="inline-actions"><button id="openFeedback" class="feedback-trigger" type="button">Send page feedback</button><button id="viewPageContext" class="outline-btn" type="button">View captured context</button></div><p class="prototype-note" id="contextPreview"></p></div>
+              <section id="feedbackPanel" class="feedback-panel" aria-live="polite" aria-label="Feedback form"><h3>Send page feedback</h3><div class="form-row"><div><label for="type">Feedback type</label><select id="type"><option value="Documentation">Documentation unclear</option><option value="Usability">Usability issue</option><option value="Feature">Feature idea</option><option value="Technical">Technical problem</option></select></div><div><label for="severity">Severity</label><select id="severity"><option value="Medium">Medium - slows work</option><option value="Low">Low - suggestion</option><option value="High">High - blocks a task</option></select></div></div><label for="details">What happened?</label><textarea id="details"></textarea><label for="email">Contact email optional</label><input id="email" type="email" placeholder="name@example.com"><p class="meta" id="capturedContext"></p><p id="formError" class="error">Please add a short note before submitting.</p><div class="actions"><button id="cancelFeedback" type="button">Cancel</button><button id="submitFeedback" class="primary" type="button">Submit feedback</button></div></section>
+            </section>
+            <section id="triageView" class="view" aria-label="Feedback triage dashboard"><h2>Feedback triage dashboard</h2><div class="dashboard-grid"><div class="stat"><strong id="totalCount">0</strong><span>Total feedback</span></div><div class="stat"><strong id="highCount">0</strong><span>High priority</span></div><div class="stat"><strong id="reviewCount">0</strong><span>In review</span></div><div class="stat"><strong id="resolvedCount">0</strong><span>Resolved</span></div></div><div class="controls"><div><label for="searchFeedback">Search feedback</label><input id="searchFeedback" type="search" placeholder="Search summary, page, owner, reference"></div><div><label for="categoryFilter">Category</label><select id="categoryFilter"><option value="All">All categories</option><option value="Documentation">Documentation</option><option value="Usability">Usability</option><option value="Feature">Feature</option><option value="Technical">Technical</option></select></div><div><label for="statusFilter">Status</label><select id="statusFilter"><option value="All">All statuses</option><option value="New">New</option><option value="In review">In review</option><option value="Resolved">Resolved</option></select></div><button id="exportCsv" class="primary" type="button">Export CSV</button></div><table aria-label="Feedback records"><thead><tr><th>Reference</th><th>Category</th><th>Summary</th><th>Priority</th><th>Status</th><th>Owner</th><th>Actions</th></tr></thead><tbody id="feedbackRows"></tbody></table><section id="detailPanel" class="detail-panel" aria-live="polite"><h3 id="detailTitle">Feedback details</h3><p id="detailSummary"></p><div class="detail-grid" id="detailGrid"></div></section></section>
+            <section id="insightsView" class="view" aria-label="Feedback insights"><h2>Insights and recommendations</h2><div class="dashboard-grid"><div class="stat"><strong id="topCategory">-</strong><span>Most common category</span></div><div class="stat"><strong id="topOwner">-</strong><span>Most frequent owner</span></div><div class="stat"><strong id="openItems">0</strong><span>Open items</span></div><div class="stat"><strong id="completionRate">0%</strong><span>Resolved rate</span></div></div><div class="panel-card"><h3>Product recommendations</h3><ul id="recommendationList"></ul></div><p class="prototype-note">The insight view shows how individual comments can become product signals for documentation, UX, support, and engineering teams.</p></section>
           </div>
-
-          <section id="feedbackPanel" class="feedback-panel" aria-live="polite">
-            <h3>Send page feedback</h3>
-            <div class="form-row">
-              <div>
-                <label for="type">Feedback type</label>
-                <select id="type">
-                  <option>Documentation unclear</option>
-                  <option>Usability issue</option>
-                  <option>Feature idea</option>
-                  <option>Technical problem</option>
-                </select>
-              </div>
-              <div>
-                <label for="severity">Severity</label>
-                <select id="severity">
-                  <option>Medium - slows work</option>
-                  <option>Low - suggestion</option>
-                  <option>High - blocks a task</option>
-                </select>
-              </div>
-            </div>
-            <label for="details">What happened?</label>
-            <textarea id="details">I cannot quickly confirm which charger accessory is compatible with this device model.</textarea>
-            <label for="email">Contact email optional</label>
-            <input id="email" type="email" placeholder="name@example.com">
-            <p class="meta">Captured context: TP9310 accessory setup guide / Accessory compatibility section</p>
-            <div class="actions">
-              <button id="cancelFeedback" type="button">Cancel</button>
-              <button id="submitFeedback" class="primary" type="button">Submit feedback</button>
-            </div>
-          </section>
-
-          <div class="tabbar" aria-label="Prototype views">
-            <button id="showProduct" class="active" type="button">Customer view</button>
-            <button id="showTriage" type="button">Triage view</button>
-          </div>
-          <section id="triageView" class="triage">
-            <h3>Feedback triage dashboard</h3>
-            <table>
-              <thead>
-                <tr><th>Category</th><th>Feedback summary</th><th>Priority</th><th>Suggested owner</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>Documentation</td><td>Compatibility examples are hard to find from the accessory setup page.</td><td class="priority-medium">Medium</td><td>Product documentation</td></tr>
-                <tr><td>Usability</td><td>Users want a guided selector by device model and work environment.</td><td class="priority-high">High</td><td>UX and product</td></tr>
-                <tr><td>Technical</td><td>Accessory links need checks for outdated product references.</td><td class="priority-medium">Medium</td><td>Support engineering</td></tr>
-              </tbody>
-            </table>
-          </section>
         </div>
       </div>
     </section>
   </main>
-
-  <footer>
-    Self-directed concept project. It is not an official Tait product and was created to demonstrate product thinking, UX/UI structure, and technical feasibility for an internship application.
-  </footer>
-
+  <footer>Self-directed concept project. It is not an official Tait product and was created to demonstrate product thinking, UX/UI structure, and technical feasibility for an internship application.</footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script>
-    const panel = document.getElementById('feedbackPanel');
-    const openBtn = document.getElementById('openFeedback');
-    const cancelBtn = document.getElementById('cancelFeedback');
-    const submitBtn = document.getElementById('submitFeedback');
-    const productBtn = document.getElementById('showProduct');
-    const triageBtn = document.getElementById('showTriage');
-    const triage = document.getElementById('triageView');
-
-    openBtn.addEventListener('click', () => panel.classList.add('show'));
-    cancelBtn.addEventListener('click', () => panel.classList.remove('show'));
-    submitBtn.addEventListener('click', () => {
-      panel.innerHTML = '<h3>Feedback received</h3><div class="success">Reference FB-1042 has been created with page context, category, severity, and user notes for triage.</div><div class="actions"><button class="primary" id="doneBtn" type="button">Done</button></div>';
-      document.getElementById('doneBtn').addEventListener('click', () => panel.classList.remove('show'));
-      triage.classList.add('show');
-      productBtn.classList.remove('active');
-      triageBtn.classList.add('active');
-    });
-    productBtn.addEventListener('click', () => {
-      productBtn.classList.add('active');
-      triageBtn.classList.remove('active');
-      triage.classList.remove('show');
-    });
-    triageBtn.addEventListener('click', () => {
-      triageBtn.classList.add('active');
-      productBtn.classList.remove('active');
-      triage.classList.add('show');
-    });
+    const pages = {
+      accessory: { title: "TP9310 accessory setup guide", summary: "This page explains compatible audio, charging, and carry accessories for a mission-critical radio device. The feedback widget captures this page context automatically.", section: "Current accessory section", description: "Users can compare common accessories, but may need a clearer way to confirm compatibility by device model and work context.", specs: [["Audio","Headset and speaker mic"],["Power","Desktop and vehicle charging"],["Carry","Clip, pouch, and wearable options"]], note: "I cannot quickly confirm which charger accessory is compatible with this device model." },
+      support: { title: "Radio network troubleshooting article", summary: "This support page helps users diagnose connectivity and configuration issues before escalating to a support team.", section: "Signal loss troubleshooting", description: "Users need clearer decision points between device settings, network coverage, and hardware checks.", specs: [["Symptom","Intermittent signal loss"],["Context","Field deployment"],["Next step","Capture reproducible details"]], note: "The troubleshooting steps are useful, but I am unsure when to escalate from configuration checks to hardware checks." },
+      workflow: { title: "Device provisioning workflow", summary: "This workflow explains how users prepare a device profile, assign configuration details, and confirm readiness for deployment.", section: "Provisioning confirmation step", description: "The final confirmation screen could show stronger validation before a user applies settings to multiple devices.", specs: [["Profile","Operational channel set"],["Risk","Bulk configuration error"],["Need","Clear pre-submit checks"]], note: "Before applying the profile, I would like a clearer warning that confirms how many devices will be affected." },
+      release: { title: "Tait Hub release note", summary: "This release note explains platform updates, resolved issues, and changes that affect support and product users.", section: "Known issues and changes", description: "Users need a way to flag release-note wording that may cause confusion during rollout.", specs: [["Update","Workflow improvements"],["Audience","Support and field users"],["Impact","Change communication"]], note: "The release note mentions workflow improvements, but I cannot tell which user roles are affected." }
+    };
+    const initialRecords = [
+      { ref:"FB-1042", category:"Documentation", summary:"Compatibility examples are hard to find from the accessory setup page.", priority:"Medium", status:"New", owner:"Product documentation", page:"TP9310 accessory setup guide", section:"Current accessory section", detail:"User needs clearer charger compatibility examples by device model and work context.", contact:"Not provided" },
+      { ref:"FB-1043", category:"Usability", summary:"Users want a guided selector by device model and work environment.", priority:"High", status:"In review", owner:"UX and product", page:"TP9310 accessory setup guide", section:"Current accessory section", detail:"Repeated comments suggest that a guided accessory selector would reduce support questions.", contact:"field.user@example.com" },
+      { ref:"FB-1044", category:"Technical", summary:"Accessory links need checks for outdated product references.", priority:"Medium", status:"New", owner:"Support engineering", page:"TP9310 accessory setup guide", section:"Current accessory section", detail:"Several related links should be checked against current accessory names and device families.", contact:"Not provided" },
+      { ref:"FB-1045", category:"Documentation", summary:"Troubleshooting article does not clearly explain escalation criteria.", priority:"High", status:"New", owner:"Support documentation", page:"Radio network troubleshooting article", section:"Signal loss troubleshooting", detail:"Users need a clearer point where configuration checks end and hardware investigation begins.", contact:"support.user@example.com" },
+      { ref:"FB-1046", category:"Usability", summary:"Provisioning workflow needs a stronger bulk-change confirmation step.", priority:"High", status:"In review", owner:"Product and engineering", page:"Device provisioning workflow", section:"Provisioning confirmation step", detail:"Users want a visible device count and final warning before applying settings to multiple devices.", contact:"Not provided" },
+      { ref:"FB-1047", category:"Feature", summary:"Release notes could let users flag confusing rollout wording.", priority:"Low", status:"Resolved", owner:"Product operations", page:"Tait Hub release note", section:"Known issues and changes", detail:"A lightweight feedback link on release notes would help product operations identify unclear rollout copy.", contact:"Not provided" }
+    ];
+    let records = initialRecords.map(r => ({...r})); let currentPageKey = "accessory"; let selectedRecordRef = null;
+    const $ = id => document.getElementById(id);
+    const elements = { pageTitle:$("pageTitle"), pageSummary:$("pageSummary"), sectionTitle:$("sectionTitle"), sectionDescription:$("sectionDescription"), specList:$("specList"), contextPreview:$("contextPreview"), capturedContext:$("capturedContext"), feedbackPanel:$("feedbackPanel"), type:$("type"), severity:$("severity"), details:$("details"), email:$("email"), formError:$("formError"), feedbackRows:$("feedbackRows"), detailPanel:$("detailPanel"), detailTitle:$("detailTitle"), detailSummary:$("detailSummary"), detailGrid:$("detailGrid"), searchFeedback:$("searchFeedback"), categoryFilter:$("categoryFilter"), statusFilter:$("statusFilter"), toast:$("toast") };
+    function showToast(message) { elements.toast.textContent = message; elements.toast.classList.add("show"); clearTimeout(showToast.timer); showToast.timer = setTimeout(() => elements.toast.classList.remove("show"), 2600); }
+    function setActiveView(viewName) { const map = { customer:["customerView","showCustomer"], triage:["triageView","showTriage"], insights:["insightsView","showInsights"] }; Object.values(map).forEach(([v,b]) => { $(v).classList.remove("active"); $(b).classList.remove("active"); }); $(map[viewName][0]).classList.add("active"); $(map[viewName][1]).classList.add("active"); if (viewName === "triage") renderTriage(); if (viewName === "insights") renderInsights(); }
+    function renderPage(pageKey) { currentPageKey = pageKey; const p = pages[pageKey]; elements.pageTitle.textContent = p.title; elements.pageSummary.textContent = p.summary; elements.sectionTitle.textContent = p.section; elements.sectionDescription.textContent = p.description; elements.contextPreview.textContent = `Captured context: ${p.title} / ${p.section}`; elements.capturedContext.textContent = `Captured context: ${p.title} / ${p.section}`; elements.details.value = p.note; elements.specList.innerHTML = p.specs.map(([l,v]) => `<div class="spec"><strong>${l}</strong><br>${v}</div>`).join(""); document.querySelectorAll("[data-page]").forEach(btn => btn.classList.toggle("active", btn.dataset.page === pageKey)); }
+    function priorityClass(priority) { return priority.toLowerCase(); } function statusClass(status) { return status === "In review" ? "review" : status.toLowerCase(); }
+    function filteredRecords() { const q = elements.searchFeedback.value.trim().toLowerCase(); const c = elements.categoryFilter.value; const s = elements.statusFilter.value; return records.filter(r => (!q || [r.ref,r.category,r.summary,r.priority,r.status,r.owner,r.page,r.section].join(" ").toLowerCase().includes(q)) && (c === "All" || r.category === c) && (s === "All" || r.status === s)); }
+    function renderStats() { $("totalCount").textContent = records.length; $("highCount").textContent = records.filter(r => r.priority === "High").length; $("reviewCount").textContent = records.filter(r => r.status === "In review").length; $("resolvedCount").textContent = records.filter(r => r.status === "Resolved").length; }
+    function renderTriage() { renderStats(); const visible = filteredRecords(); elements.feedbackRows.innerHTML = visible.map(r => `<tr><td>${r.ref}</td><td>${r.category}</td><td>${r.summary}</td><td><span class="priority ${priorityClass(r.priority)}">${r.priority}</span></td><td><span class="status ${statusClass(r.status)}">${r.status}</span></td><td>${r.owner}</td><td><div class="row-actions"><button type="button" data-action="details" data-ref="${r.ref}">Details</button><button type="button" data-action="status" data-ref="${r.ref}">Next status</button><button type="button" data-action="copy" data-ref="${r.ref}">Copy ref</button></div></td></tr>`).join(""); if (!visible.length) elements.feedbackRows.innerHTML = `<tr><td colspan="7">No feedback matches the current filters.</td></tr>`; }
+    function showDetails(ref) { const r = records.find(item => item.ref === ref); if (!r) return; selectedRecordRef = ref; elements.detailTitle.textContent = `${r.ref} details`; elements.detailSummary.textContent = r.detail; elements.detailGrid.innerHTML = `<div><strong>Page</strong><br>${r.page}</div><div><strong>Section</strong><br>${r.section}</div><div><strong>Contact</strong><br>${r.contact}</div><div><strong>Category</strong><br>${r.category}</div><div><strong>Priority</strong><br>${r.priority}</div><div><strong>Status</strong><br>${r.status}</div>`; elements.detailPanel.classList.add("show"); }
+    function nextStatus(ref) { const r = records.find(item => item.ref === ref); if (!r) return; const statuses = ["New","In review","Resolved"]; r.status = statuses[(statuses.indexOf(r.status)+1)%statuses.length]; renderTriage(); if (selectedRecordRef === ref) showDetails(ref); showToast(`${ref} moved to ${r.status}.`); }
+    function copyReference(ref) { if (navigator.clipboard?.writeText) navigator.clipboard.writeText(ref).then(() => showToast(`${ref} copied.`)).catch(() => showToast(`${ref} ready to copy.`)); else showToast(`${ref} ready to copy.`); }
+    function ownerFor(category) { return { Documentation:"Product documentation", Usability:"UX and product", Feature:"Product operations", Technical:"Support engineering" }[category] || "Product team"; }
+    function submitFeedback() { const detail = elements.details.value.trim(); if (!detail) { elements.formError.classList.add("show"); elements.details.focus(); return; } elements.formError.classList.remove("show"); const page = pages[currentPageKey]; const record = { ref:`FB-${1042 + records.length}`, category:elements.type.value, summary: detail.length > 86 ? `${detail.slice(0,83)}...` : detail, priority:elements.severity.value, status:"New", owner:ownerFor(elements.type.value), page:page.title, section:page.section, detail, contact:elements.email.value.trim() || "Not provided" }; records.unshift(record); elements.feedbackPanel.classList.remove("show"); renderTriage(); setActiveView("triage"); showDetails(record.ref); showToast(`${record.ref} created with page context and triage fields.`); }
+    function renderInsights() { const countBy = key => records.reduce((a,r) => (a[r[key]] = (a[r[key]] || 0) + 1, a), {}); const top = obj => Object.entries(obj).sort((a,b) => b[1] - a[1])[0]?.[0] || "-"; const resolved = records.filter(r => r.status === "Resolved").length; $("topCategory").textContent = top(countBy("category")); $("topOwner").textContent = top(countBy("owner")); $("openItems").textContent = records.length - resolved; $("completionRate").textContent = `${Math.round((resolved / records.length) * 100)}%`; $("recommendationList").innerHTML = ["Add guided accessory compatibility checks for device model and field context.","Clarify support escalation points in troubleshooting documentation.","Use severity and page context as required triage fields for actionable feedback.","Review repeated high-priority UX issues weekly with product and engineering owners."].map(item => `<li>${item}</li>`).join(""); }
+    function exportCsv() { const rows = [["Reference","Category","Summary","Priority","Status","Owner","Page","Section"]]; filteredRecords().forEach(r => rows.push([r.ref,r.category,r.summary,r.priority,r.status,r.owner,r.page,r.section])); const csv = rows.map(row => row.map(cell => `"${String(cell).replaceAll('"','""')}"`).join(",")).join("\n"); const blob = new Blob([csv], { type:"text/csv" }); const url = URL.createObjectURL(blob); const link = document.createElement("a"); link.href = url; link.download = "feedback-triage-export.csv"; link.click(); URL.revokeObjectURL(url); showToast("CSV export created."); }
+    function resetDemo() { records = initialRecords.map(r => ({...r})); selectedRecordRef = null; elements.searchFeedback.value = ""; elements.categoryFilter.value = "All"; elements.statusFilter.value = "All"; elements.detailPanel.classList.remove("show"); renderPage("accessory"); renderTriage(); renderInsights(); setActiveView("customer"); showToast("Demo reset to the starting data."); }
+    document.querySelectorAll("[data-page]").forEach(btn => btn.addEventListener("click", () => { renderPage(btn.dataset.page); setActiveView("customer"); }));
+    $("showCustomer").addEventListener("click", () => setActiveView("customer")); $("showTriage").addEventListener("click", () => setActiveView("triage")); $("showInsights").addEventListener("click", () => setActiveView("insights"));
+    $("openFeedback").addEventListener("click", () => elements.feedbackPanel.classList.add("show")); $("viewPageContext").addEventListener("click", () => showToast(elements.contextPreview.textContent)); $("cancelFeedback").addEventListener("click", () => elements.feedbackPanel.classList.remove("show")); $("submitFeedback").addEventListener("click", submitFeedback); $("exportCsv").addEventListener("click", exportCsv); $("resetDemo").addEventListener("click", resetDemo);
+    elements.searchFeedback.addEventListener("input", renderTriage); elements.categoryFilter.addEventListener("change", renderTriage); elements.statusFilter.addEventListener("change", renderTriage);
+    elements.feedbackRows.addEventListener("click", event => { const btn = event.target.closest("button"); if (!btn) return; if (btn.dataset.action === "details") showDetails(btn.dataset.ref); if (btn.dataset.action === "status") nextStatus(btn.dataset.ref); if (btn.dataset.action === "copy") copyReference(btn.dataset.ref); });
+    renderPage(currentPageKey); renderTriage(); renderInsights();
   </script>
 </body>
 </html>

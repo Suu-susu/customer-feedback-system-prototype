@@ -6,8 +6,6 @@ Self-directed UX/UI and web platform concept project by Jiashuo Su, created to d
 
 ## Live Prototype
 
-Open `index.html` in this repository, or use the GitHub Pages link once Pages is enabled:
-
 https://suu-susu.github.io/customer-feedback-system-prototype/
 
 ## Project Focus
@@ -16,8 +14,8 @@ This project demonstrates:
 
 - Customer feedback journey design for a technical web platform
 - UX/UI thinking for low-friction feedback capture
-- Stakeholder requirement analysis across customers, support, product, and engineering
-- Feedback categorisation and triage workflow design
+- Stakeholder requirement analysis across customers, support, product, documentation, and engineering
+- Feedback categorisation, filtering, ownership, status updates, and reporting workflow
 - Practical web implementation using HTML, CSS, and JavaScript
 
 ## Included Files
@@ -25,12 +23,13 @@ This project demonstrates:
 - `index.html` - interactive prototype and case study page
 - `README.md` - project overview and positioning
 
-## Interview Talking Points
+## Key Interactions
 
-- The feedback widget captures page context automatically so users do not need to explain where the issue happened.
-- Category and severity fields help support and product teams triage feedback faster.
-- The internal triage view turns user comments into product signals for UX, support, documentation, and engineering teams.
-- The concept balances low-friction user submission with enough structured detail for follow-up.
+- Switch between four Tait Hub content contexts
+- Submit page-level feedback with captured context
+- View triage dashboard records
+- Search and filter feedback by category and status
+- Open details, advance status, copy references, export CSV, and reset demo data
 
 ## Honest Positioning
 
